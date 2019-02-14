@@ -7,32 +7,32 @@ import java.util.concurrent.*;
 import java.util.regex.*;
 import java.lang.*;
 
-public class caesarCipher{
+public class Solution {
 
     // Complete the caesarCipher function below.
     static String caesarCipher(String s, int k) {
-       String result = " ";
-   
-for(int i=0; i<s.length();i++) {
-  //  if(isupper(s[i]))
-  if(Character.isUpperCase(s.charAt(i)))
-     result += (char)(((int)s.charAt(i) + k-65)% 26 + 65);
+char value[] = s.toCharArray();  // split character os a string and stores it into an array
+k = k%26;
 
-else if(Character.isLowerCase(s.charAt(i)))
-result += (char)(((int)s.charAt(i) + k-97)% 26 +97); 
-
+for(int i=0;i<s.length(); i++) {
+    if(value[i] >=65 && value[i]<=90)
+    {
+if(value[i]+k>90)
+value[i]= (char)(value[i]+k-26);
 else
-//result +=(char)((int)s.charAt(i));
- //result=(int)s.charAt(i);
-//result +=char;
-//result += i;
-//return s[i];
-//result = result;
-
-  //if(s.charAt(i)==s.charAt(i))
-                result += s.charAt(i);               
-}
-return result;
+value[i]=(char)(value[i]+k);
+    }
+    else if(value[i] >=97 && value[i]<=122)
+    {
+    if(value[i]+k>122)
+value[i]= (char)(value[i]+k-26);
+else
+value[i]=(char)(value[i]+k);    
+    }
+    else
+    value[i] = value[i];
+} 
+return String.valueOf(value);
     }
 
     private static final Scanner scanner = new Scanner(System.in);
